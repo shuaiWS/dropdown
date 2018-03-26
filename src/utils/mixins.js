@@ -10,9 +10,8 @@ export default {
          */
         broadcast(target, componentName, eventName, params) {
             let me = this;
-            console.log(me)
             target.forEach(function(child) {
-                var name = child.$options.componentName;
+                let name = child.$options.componentName;
                 if (name === componentName) {
                     child.$emit.apply(child, [eventName].concat(params));
                 } else {
@@ -25,8 +24,8 @@ export default {
          * @param {Component} target 当前组件
          * @param {String} componentName 组件名称
          * @param {String} eventName 需要触发的事件名称
-         * @param {any[]} params 需要传递的参数
-         * @return {void}
+         * @param {Any[]} params 需要传递的参数
+         * @return {Void}
          */
         dispatch(target, componentName, eventName, params) {
             let name;
@@ -41,7 +40,7 @@ export default {
          * @description 递归为目标元素的父元素绑定滚动事件，并执行callback
          * @param {Element} $el 目标元素
          * @param {Function} callback 回调函数
-         * @return {void}
+         * @return {Void}
          */
         bindUpdate($el, callback) {
             let target;

@@ -10,7 +10,8 @@
   //9.将下拉框组件渲染到body中
   //10.添加下拉组件的样式(因elementUI的样式做的很漂亮，直接copy)
   //11.提出可复用代码，插件混入使用
-  //12.后续功能开发  waiting...
+  //12.加上transition
+  //13.后续功能开发  waiting...
 import minxin from './../utils/mixins'
 export default {
   name: "MyDropdown",

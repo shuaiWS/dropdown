@@ -11,7 +11,7 @@ export default {
         broadcast(target, componentName, eventName, params) {
             let me = this;
             target.forEach(function(child) {
-                var name = child.$options.componentName;
+                let name = child.$options.componentName;
                 if (name === componentName) {
                     child.$emit.apply(child, [eventName].concat(params));
                 } else {

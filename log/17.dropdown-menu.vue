@@ -70,7 +70,7 @@ export default {
     transition: transform .3s cubic-bezier(.23, 1, .32, 1), opacity .3s cubic-bezier(.23, 1, .32, 1);
     transition: transform .3s cubic-bezier(.23, 1, .32, 1), opacity .3s cubic-bezier(.23, 1, .32, 1), -webkit-transform .3s cubic-bezier(.23, 1, .32, 1);
     -webkit-transform-origin: center top;
-    transform-origin: center top;
+    transform-origin: center top
 }
 
 .my-transition-enter,
