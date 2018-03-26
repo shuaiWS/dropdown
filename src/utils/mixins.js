@@ -10,6 +10,7 @@ export default {
          */
         broadcast(target, componentName, eventName, params) {
             let me = this;
+            console.log(me)
             target.forEach(function(child) {
                 var name = child.$options.componentName;
                 if (name === componentName) {
