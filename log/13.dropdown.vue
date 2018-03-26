@@ -60,7 +60,7 @@ export default {
      * @param {Component} target 当前组件
      * @param {String} componentName 组件名称
      * @param {String} eventName 需要触发的事件名称
-     * @param {any} params 需要传递的参数
+     * @param {any[]} params 需要传递的参数
      * @return {void}
      */
     broadcast(target, componentName, eventName, params) {

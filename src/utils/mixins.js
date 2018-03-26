@@ -5,7 +5,7 @@ export default {
          * @param {Component} target 当前组件
          * @param {String} componentName 组件名称
          * @param {String} eventName 需要触发的事件名称
-         * @param {any} params 需要传递的参数
+         * @param {any[]} params 需要传递的参数
          * @return {void}
          */
         broadcast(target, componentName, eventName, params) {
@@ -18,6 +18,23 @@ export default {
                     me.broadcast(child.$children, componentName, eventName, params);
                 }
             });
+        },
+        /**
+         * @description 逆向递归寻找当前组件的父组件，然后emit事件并传递参数
+         * @param {Component} target 当前组件
+         * @param {String} componentName 组件名称
+         * @param {String} eventName 需要触发的事件名称
+         * @param {any[]} params 需要传递的参数
+         * @return {void}
+         */
+        dispatch(target, componentName, eventName, params) {
+            let name;
+            if (!(name = target.$options.componentName)) return
+            if (name === componentName) {
+                target.$emit.apply(target, [eventName].concat(params));
+            } else {
+                this.dispatch(target.$parent, componentName, eventName, params);
+            }
         },
         /**
          * @description 递归为目标元素的父元素绑定滚动事件，并执行callback
@@ -58,7 +75,6 @@ export default {
             } = this.getBoundingClientRect($target);
             let scrollTop = window.scrollY;
             let scrollLeft = window.scrollX;
-            console.log(scrollTop)
             $target.style.top = `${$elTop + $elHeight + scrollTop}px`;
             $target.style.left = `${$elRight - $targetWidth + scrollLeft}px`;
         },
@@ -87,23 +103,6 @@ export default {
                 return clientRect;
             }
             return $el.getBoundingClientRect();
-        },
-        /**
-         * @description 逆向递归寻找当前组件的父组件，然后emit事件并传递参数
-         * @param {Component} target 当前组件
-         * @param {String} componentName 组件名称
-         * @param {String} eventName 需要触发的事件名称
-         * @param {any} params 需要传递的参数
-         * @return {void}
-         */
-        dispatch(target, componentName, eventName, params) {
-            let name;
-            if (!(name = target.$options.componentName)) return
-            if (name === componentName) {
-                target.$emit.apply(target, [eventName].concat(params));
-            } else {
-                this.dispatch(target.$parent, componentName, eventName, params);
-            }
         }
     }
 }
