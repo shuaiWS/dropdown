@@ -52,7 +52,7 @@ export default {
       this.visible = true;
     },
     handleMenuItemClick(command, instance) {
-      this.visible = false;
+      this.hide();
       this.$emit('command',command, instance)
     },
     /**

@@ -23,7 +23,7 @@ export default {
     init(){
       this.buttonEl = this.$parent.$children[0].$el //获取按钮
       this.dropdownEl = this.$el //下拉框组件
-      document.body.appendChild(this.$el) //将组件注册到body中去
+      document.body.appendChild(this.$el) //将组件挂载到body中去
     },
     initEvent(){
       this.$on('visible',val=>{

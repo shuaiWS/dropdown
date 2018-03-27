@@ -25,7 +25,7 @@ export default {
     init() {
       this.buttonEl = this.$parent.$children[0].$el; //获取按钮
       this.dropdownEl = this.$el; //下拉框组件
-      document.body.appendChild(this.$el); //将组件注册到body中去
+      document.body.appendChild(this.$el); //将组件挂载到body中去
     },
     initEvent() {
       this.$on("visible", val => {
@@ -36,6 +36,7 @@ export default {
       this.$on("update", val => {
         val && this.update(this.buttonEl, this.dropdownEl);
       });
+      //实现滑动滚动条时，下拉框能跟随按钮一起滑动定位
       this.bindUpdate(this.buttonEl, () => {
         this.showPopper && this.update(this.buttonEl, this.dropdownEl);
       });
@@ -124,6 +125,7 @@ export default {
   border: 1px solid #ebeef5;
   border-radius: 4px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  z-index:9999;
 }
 </style>
 

@@ -16,12 +16,12 @@
 <script>
 import MyButton from "./components/button";
 import MyDropdown from "./components/dropdown";
-import myDropdownMenu from "./components/dropdown-menu";
+import MyDropdownMenu from "./components/dropdown-menu";
 import myDropdownItem from "./components/dropdown-item";
 
 export default {
   name: "App",
-  components: { MyButton, MyDropdown, myDropdownMenu, myDropdownItem },
+  components: { MyButton, MyDropdown, MyDropdownMenu, myDropdownItem },
   data() {
     return {
       smyectedValue: "请选择",
@@ -34,9 +34,16 @@ export default {
       ]
     };
   },
-  methods:{
-    handleCommand(command){
+  methods: {
+    handleCommand(command) {
       console.log(`我被点击了,command为${command}`);
+      this.dropdownData.every(ele=>{
+        if(command == ele.id){
+          this.smyectedValue = ele.value
+          return false
+        }
+        return true
+      })
     }
   }
 };
@@ -50,15 +57,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  width: 400px;
-  height: 400px;
-  overflow: scroll;
-  margin: 0 auto;
-  margin-top: 300px;
 }
-.main {
-  width: 800px;
-  height: 800px;
-  line-height: 800px;
-}
+.main {}
 </style>

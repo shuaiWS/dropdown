@@ -5,9 +5,9 @@
 </template>
 <script>
 export default {
-  name: "myDropdownMenu",
+  name: "MyDropdownMenu",
 
-  componentName: "myDropdownMenu",
+  componentName: "MyDropdownMenu",
 
   props: {},
   data() {

@@ -5,8 +5,8 @@ export default {
          * @param {Component} target 当前组件
          * @param {String} componentName 组件名称
          * @param {String} eventName 需要触发的事件名称
-         * @param {any[]} params 需要传递的参数
-         * @return {void}
+         * @param {Any[]} params 需要传递的参数
+         * @return {Void}
          */
         broadcast(target, componentName, eventName, params) {
             let me = this;
@@ -24,8 +24,8 @@ export default {
          * @param {Component} target 当前组件
          * @param {String} componentName 组件名称
          * @param {String} eventName 需要触发的事件名称
-         * @param {any[]} params 需要传递的参数
-         * @return {void}
+         * @param {Any[]} params 需要传递的参数
+         * @return {Void}
          */
         dispatch(target, componentName, eventName, params) {
             let name;
@@ -40,7 +40,7 @@ export default {
          * @description 递归为目标元素的父元素绑定滚动事件，并执行callback
          * @param {Element} $el 目标元素
          * @param {Function} callback 回调函数
-         * @return {void}
+         * @return {Void}
          */
         bindUpdate($el, callback) {
             let target;
@@ -85,11 +85,11 @@ export default {
          */
         getBoundingClientRect($el) {
             let style = $el.style;
-            if (style.display === "none") {
+            if (style.display === "none") { //display为none的元素没有物理尺寸，所以采用jQuery的方法，先将其脱离文档流设为隐藏，获得尺寸后还原
                 let _addCss = {
-                    display: "",
                     position: "absolute",
-                    visibility: "hidden"
+                    visibility: "hidden",
+                    display: ""
                 };
                 let _oldCss = {};
                 for (let i in _addCss) {

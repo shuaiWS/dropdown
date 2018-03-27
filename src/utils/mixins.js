@@ -85,11 +85,11 @@ export default {
          */
         getBoundingClientRect($el) {
             let style = $el.style;
-            if (style.display === "none") {
+            if (style.display === "none") { //display为none的元素没有物理尺寸，所以采用jQuery的方法，先将其脱离文档流设为隐藏，获得尺寸后还原
                 let _addCss = {
-                    display: "",
                     position: "absolute",
-                    visibility: "hidden"
+                    visibility: "hidden",
+                    display: ""
                 };
                 let _oldCss = {};
                 for (let i in _addCss) {

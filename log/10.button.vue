@@ -34,7 +34,7 @@ export default {
     font-size: 14px;
     border-radius: 4px
 }
-.my-button:hover {
+.my-button:hover,.my-button:focus {
     color: #409EFF;
     border-color: #c6e2ff;
     background-color: #ecf5ff

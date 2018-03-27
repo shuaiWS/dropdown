@@ -49,7 +49,7 @@ export default {
     },
     handleMenuItemClick() {
       console.log('我被点击了')
-      this.visible = false;
+      this.hide();
     },
      /**
      * @description 递归遍历当前组件下面所有与组件名称相匹配的组件，并触发目标事件并传参

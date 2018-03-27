@@ -54,7 +54,7 @@ export default {
   cursor: pointer;
   outline: 0;
 }
-.my-dropdown-menu-item:hover {
+.my-dropdown-menu-item:hover ,.my-dropdown-menu-item:focus {
   background-color: #ecf5ff;
   color: #66b1ff;
 }
