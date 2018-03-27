@@ -20,7 +20,7 @@ npm run build --report
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-使用vue开发过几个项目了，对vue感觉很好，不愧为开源世界华人的骄傲（顺便膜拜下尤大~~）
+使用vue开发过几个项目了，对vue感觉很好，不愧为开源世界华人的骄傲（顺便膜拜下尤大~~ ）
 Vue是一个数据驱动页面的一个框架，他的双向绑定原理使我们开发页面更简单
 总结起来的几大特点：1.简洁2.轻量3.快速4.数据驱动5.模块友好6.组件化
 在这整理一篇vue的丑陋版的下拉框组件(因为还没加更加详细的功能)，用作学习vue的笔记
@@ -52,22 +52,24 @@ Vue是一个数据驱动页面的一个框架，他的双向绑定原理使我�
 
 第四步先给按钮加上点击事件，可以正确打印出显示隐藏的状态
 
-第四步
+第五步通过dropdown.vue将button与dropdown-item.vue连通起来，实现组件间的通信
+具体做法为
+1.在dropdown中为button绑定click事件，设置下拉组件的visible为true和false，通过Vue的watch钩子来监听visible的变化来向子组件dropdown-menu.vue来emit一个事件，在dropdown-menu.vue生命周期中只要事先绑定好了这个事件，就会接收到事件反馈和参数传递，通过参数的值来判断是否显示和隐藏menu
+2.在dropdown.vue中绑定一个item中的自定义点击事件，当触发该方法是隐藏整个menu
+这两个方法的关键点在父子组件之间的通信，方法见（broadcast与dispatch）
 
+第六步整个下拉组件四个子组件的通信实现了，因为下拉框受父元素的高度和overflow影响，不能作为button的兄弟组件存在，现在将menu渲染到body中，并给出美观的css（copy自elementUI），然后根据button的位置绝对定位到具体位置
+具体做法为
+1.设置menu的position:absolute;
+2.获取button的位置信息--使用getBoundingClientRect方法可以获取元素在窗口的相对位置和元素的宽高（但不是在文档流中的位置，所以绝对定位时要加上window的scrollTop和scrollLeft）
+3.如果元素的display为none时，getBoundingClientRect方法是无法获取物理尺寸的，所以，实现menu与button的右对齐还需要算出menu的宽度，所以用jQuery的方法为将元素设置visible为hidden，然后将其脱离文档流获取尺寸后在还原回去
 
+第七步现在大致的定位和样式以及交互都完成了，现在如果button的父组件或祖父组件可以拉滚动条的话，在滚动时需要实时跟新menu的位置
+具体做法为：
+由button向上递归获取父元素，并为他们绑定滚动监听，如果下拉框是显示的状态。则需要不断的更新下拉框的位置
 
-1.按照elementUI的写法，将
-<template>
-  <div id="app">
-    <div class="main">
-      <my-dropdown @command="handleCommand">
-        <my-button>
-          {{smyectedValue}}<i class="my-icon-arrow-down"></i>
-        </my-button>
-        <my-dropdown-menu  slot="dropdown">
-          <my-dropdown-item  v-for="(item,i) in dropdownData" :key="i" :command="item.id">{{item.value}}</my-dropdown-item>
-        </my-dropdown-menu>
-      </my-dropdown>
-    </div>
-  </div>
-</template>
+第八步为将一些可以重用的方法提出到util中，作为组件的混合使用
+
+第九步添加一些tab键聚焦和按键操作
+
+整个流程走完了，组件基本功能算是完善了
