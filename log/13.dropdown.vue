@@ -78,7 +78,7 @@ export default {
 
   watch: {
     visible(val) {
-      console.log(`马上为${val ? "显示" : "隐藏"}状态`);
+      console.log(`即将为${val ? "显示" : "隐藏"}状态`);
       this.broadcast(this.$children, "MyDropdownMenu", "visible", val);
     }
   },

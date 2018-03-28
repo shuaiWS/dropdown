@@ -8,12 +8,12 @@ export default {
          * @param {Any[]} params 需要传递的参数
          * @return {Void}
          */
-        broadcast(target, componentName, eventName, params) {
+        broadcast(target, componentName, eventName, params = []) {
             let me = this;
             target.forEach(function(child) {
                 let name = child.$options.componentName;
                 if (name === componentName) {
-                    child.$emit.apply(child, [eventName].concat(params));
+                    child.$emit.apply(child, [eventName, ...params]);
                 } else {
                     me.broadcast(child.$children, componentName, eventName, params);
                 }
@@ -27,11 +27,11 @@ export default {
          * @param {Any[]} params 需要传递的参数
          * @return {Void}
          */
-        dispatch(target, componentName, eventName, params) {
+        dispatch(target, componentName, eventName, params = []) {
             let name;
             if (!(name = target.$options.componentName)) return
             if (name === componentName) {
-                target.$emit.apply(target, [eventName].concat(params));
+                target.$emit.apply(target, [eventName, ...params]);
             } else {
                 this.dispatch(target.$parent, componentName, eventName, params);
             }
@@ -42,9 +42,9 @@ export default {
          * @param {Function} callback 回调函数
          * @return {Void}
          */
-        bindUpdate($el, callback) {
+        bindUpdate($el, callback = () => {}) {
             let target;
-            if ((target = $el.parentElement)) {
+            if (target = $el.parentElement) {
                 target.addEventListener("scroll", callback);
                 this.bindUpdate(target, callback);
             }

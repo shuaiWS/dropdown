@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import App from './App'
-
+import MyDropdown from './components'
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
+Vue.use(MyDropdown)
+    /* eslint-disable no-new */
 new Vue({
     el: '#app',
     render: h => h(App)

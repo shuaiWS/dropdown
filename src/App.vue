@@ -14,14 +14,10 @@
 </template>
 
 <script>
-import MyButton from "./components/button";
-import MyDropdown from "./components/dropdown";
-import MyDropdownMenu from "./components/dropdown-menu";
-import myDropdownItem from "./components/dropdown-item";
 
 export default {
   name: "App",
-  components: { MyButton, MyDropdown, MyDropdownMenu, myDropdownItem },
+  components: {  },
   data() {
     return {
       smyectedValue: "请选择",

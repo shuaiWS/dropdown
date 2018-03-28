@@ -8,7 +8,7 @@
 <script>
 //1.将下拉框组件渲染到body中
 //2.将下拉组件定位到按钮下
-import minxin from './../utils/mixins'
+import minxin from "./../../../utils/mixins";
 export default {
   name: "MyDropdownMenu",
 

@@ -12,7 +12,7 @@
 //11.提出可复用代码，插件混入使用（最好将类似功能的放在一个method中，但我只是开发了一个小组件于是封装在了一起，勿喷~~，哈哈）
 //12.加上transition
 //13.后续功能开发  waiting...
-import minxin from "./../utils/mixins";
+import minxin from "./../../../utils/mixins";
 export default {
   name: "MyDropdown",
 
@@ -117,8 +117,8 @@ export default {
 
   watch: {
     visible(val) {
-      console.log(`马上为${val ? "显示" : "隐藏"}状态`);
-      this.broadcast(this.$children, "MyDropdownMenu", "visible", val);
+      console.log(`即将为${val ? "显示" : "隐藏"}状态`);
+      this.broadcast(this.$children, "MyDropdownMenu", "visible", [val]);
     }
   },
   render(h) {
