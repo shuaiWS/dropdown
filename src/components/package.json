@@ -1,0 +1,14 @@
+{
+    "name": "my-dropdown",
+    "version": "1.1.0",
+    "description": "test play play",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "dropdown"
+    ],
+    "author": "shuai",
+    "license": "ISC"
+}

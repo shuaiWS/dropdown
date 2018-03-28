@@ -1,7 +1,7 @@
-import MyButton from './../components/packages/button'
-import MyDropdownItem from './../components/packages/dropdown-item'
-import MyDropdownMenu from './../components/packages/dropdown-menu'
-import MyDropdown from './../components/packages/dropdown'
+import MyButton from './packages/button'
+import MyDropdownItem from './packages/dropdown-item'
+import MyDropdownMenu from './packages/dropdown-menu'
+import MyDropdown from './packages/dropdown'
 
 const components = [
     MyButton, MyDropdownItem, MyDropdownMenu, MyDropdown
