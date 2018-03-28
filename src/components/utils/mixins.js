@@ -9,15 +9,15 @@ export default {
          * @return {Void}
          */
         broadcast(target, componentName, eventName, params = []) {
-            let me = this;
+            let me = this
             target.forEach(function(child) {
-                let name = child.$options.componentName;
+                let name = child.$options.componentName
                 if (name === componentName) {
-                    child.$emit.apply(child, [eventName, ...params]);
+                    child.$emit.apply(child, [eventName, ...params])
                 } else {
-                    me.broadcast(child.$children, componentName, eventName, params);
+                    me.broadcast(child.$children, componentName, eventName, params)
                 }
-            });
+            })
         },
         /**
          * @description 逆向递归寻找当前组件的父组件，然后emit事件并传递参数
@@ -28,12 +28,12 @@ export default {
          * @return {Void}
          */
         dispatch(target, componentName, eventName, params = []) {
-            let name;
+            let name
             if (!(name = target.$options.componentName)) return
             if (name === componentName) {
-                target.$emit.apply(target, [eventName, ...params]);
+                target.$emit.apply(target, [eventName, ...params])
             } else {
-                this.dispatch(target.$parent, componentName, eventName, params);
+                this.dispatch(target.$parent, componentName, eventName, params)
             }
         },
         /**
@@ -43,10 +43,10 @@ export default {
          * @return {Void}
          */
         bindUpdate($el, callback = () => {}) {
-            let target;
+            let target
             if (target = $el.parentElement) {
-                target.addEventListener("scroll", callback);
-                this.bindUpdate(target, callback);
+                target.addEventListener("scroll", callback)
+                this.bindUpdate(target, callback)
             }
         },
         /**
@@ -56,7 +56,7 @@ export default {
          * @return {Void}
          */
         update($el, $target) {
-            if (!$el || !$target) return;
+            if (!$el || !$target) return
             let {
                 bottom: $elBottom,
                 height: $elHeight,
@@ -64,7 +64,7 @@ export default {
                 right: $elRight,
                 top: $elTop,
                 width: $elWidth
-            } = this.getBoundingClientRect($el);
+            } = this.getBoundingClientRect($el)
             let {
                 bottom: $targetBottom,
                 height: $targetHeight,
@@ -72,11 +72,11 @@ export default {
                 right: $targetRight,
                 top: $targetTop,
                 width: $targetWidth
-            } = this.getBoundingClientRect($target);
-            let scrollTop = window.scrollY;
-            let scrollLeft = window.scrollX;
-            $target.style.top = `${$elTop + $elHeight + scrollTop}px`;
-            $target.style.left = `${$elRight - $targetWidth + scrollLeft}px`;
+            } = this.getBoundingClientRect($target)
+            let scrollTop = window.scrollY
+            let scrollLeft = window.scrollX
+            $target.style.top = `${$elTop + $elHeight + scrollTop}px`
+            $target.style.left = `${$elRight - $targetWidth + scrollLeft}px`
         },
         /**
          * @description 获取元素的bottom、height、left、right、top、width属性
@@ -84,25 +84,25 @@ export default {
          * @return {ClientRect}
          */
         getBoundingClientRect($el) {
-            let style = $el.style;
+            let style = $el.style
             if (style.display === "none") { //display为none的元素没有物理尺寸，所以采用jQuery的方法，先将其脱离文档流设为隐藏，获得尺寸后还原
                 let _addCss = {
                     position: "absolute",
                     visibility: "hidden",
                     display: ""
-                };
-                let _oldCss = {};
+                }
+                let _oldCss = {}
                 for (let i in _addCss) {
-                    _oldCss[i] = style[i];
-                    style[i] = _addCss[i];
+                    _oldCss[i] = style[i]
+                    style[i] = _addCss[i]
                 }
-                let clientRect = $el.getBoundingClientRect();
+                let clientRect = $el.getBoundingClientRect()
                 for (let i in _oldCss) {
-                    style[i] = _oldCss[i];
+                    style[i] = _oldCss[i]
                 }
-                return clientRect;
+                return clientRect
             }
-            return $el.getBoundingClientRect();
+            return $el.getBoundingClientRect()
         }
     }
 }

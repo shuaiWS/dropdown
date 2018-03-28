@@ -7,7 +7,7 @@
 //1.给下拉选项添加点击事件
 //2.为下拉框添加点击值，绑定command
 
-import minxin from "./../../../utils/mixins";
+import minxin from "./../../../utils/mixins"
 export default {
   name: "MyDropdownItem",
 
@@ -24,10 +24,10 @@ export default {
       this.dispatch(this.$parent, "MyDropdown", "menu-item-click", [
         this.command,
         this
-      ]);
+      ])
     }
   }
-};
+}
 </script>
 
 <style>

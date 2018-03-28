@@ -8,7 +8,7 @@
 <script>
 //1.将下拉框组件渲染到body中
 //2.将下拉组件定位到按钮下
-import minxin from "./../../../utils/mixins";
+import minxin from "./../../../utils/mixins"
 export default {
   name: "MyDropdownMenu",
 
@@ -19,34 +19,34 @@ export default {
   data() {
     return {
       showPopper: false
-    };
+    }
   },
   mounted() {
-    this.init();
-    this.initEvent();
+    this.init()
+    this.initEvent()
   },
   methods: {
     init() {
-      this.buttonEl = this.$parent.$children[0].$el; //获取按钮
-      this.dropdownEl = this.$el; //下拉框组件
-      document.body.appendChild(this.$el); //将组件挂载到body中去
+      this.buttonEl = this.$parent.$children[0].$el //获取按钮
+      this.dropdownEl = this.$el //下拉框组件
+      document.body.appendChild(this.$el) //将组件挂载到body中去
     },
     initEvent() {
       this.$on("visible", val => {
-        console.log(`现在为${val ? "显示" : "隐藏"}状态`);
-        this.showPopper = val;
-        val && this.$emit("update", val);
-      });
+        console.log(`现在为${val ? "显示" : "隐藏"}状态`)
+        this.showPopper = val
+        val && this.$emit("update", val)
+      })
       this.$on("update", val => {
-        val && this.update(this.buttonEl, this.dropdownEl);
-      });
+        val && this.update(this.buttonEl, this.dropdownEl)
+      })
       //实现滑动滚动条时，下拉框能跟随按钮一起滑动定位
       this.bindUpdate(this.buttonEl, () => {
-        this.showPopper && this.update(this.buttonEl, this.dropdownEl);
-      });
+        this.showPopper && this.update(this.buttonEl, this.dropdownEl)
+      })
     }
   }
-};
+}
 </script>
 
 <style>
